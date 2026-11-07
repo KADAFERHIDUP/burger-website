@@ -1,0 +1,107 @@
+/* Tambahan untuk versi CodeIgniter: keranjang, checkout, notifikasi */
+
+.header .cart-link { position: relative; }
+.cart-badge {
+  position: absolute; top: -1rem; right: -1.2rem;
+  min-width: 2rem; height: 2rem; padding: 0 .5rem;
+  border-radius: 1rem; background: #fff200; color: #000;
+  font: 700 1.2rem/2rem 'Raleway', sans-serif; text-align: center;
+}
+
+.menu .box-container .box .content .desc { font-size: 1.4rem; color: #aaa; line-height: 1.7; padding: .5rem 2rem 0; }
+.menu .add-form { display: inline; }
+.menu .add-form .btn i { color: #fff200; padding-right: .5rem; }
+.menu .add-form .btn:hover i { color: #000; }
+.menu .search-info { text-align: center; font-size: 1.6rem; color: #aaa; margin-bottom: 2rem; }
+.menu .search-info a { color: #fff200; }
+
+button.btn { font-family: inherit; }
+.btn-primary { background: #fff200; color: #000; border-color: #fff200; font-weight: 600; }
+.btn-primary:hover { background: #fff; border-color: #fff; }
+.btn-outline { background: none; }
+
+/* notifikasi */
+.flash-wrap {
+  position: fixed; top: 11rem; left: 50%; transform: translateX(-50%);
+  z-index: 1100; width: min(60rem, 92%);
+  background: #111; border: .2rem solid rgba(255,255,255,.2); padding: 1.5rem 4.5rem 1.5rem 2rem;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.6);
+}
+.flash { display: flex; gap: 1rem; font-size: 1.6rem; color: #fff; line-height: 1.6; text-transform: none; }
+.flash + .flash { margin-top: 1rem; }
+.flash * { text-transform: none; }
+.flash a { color: #fff200; text-decoration: underline; }
+.flash-success i { color: #7ee07e; }
+.flash-error i { color: #ff6b6b; }
+.flash ul { list-style: none; }
+.flash-close { position: absolute; top: .8rem; right: 1.4rem; background: none; color: #aaa; font-size: 2.6rem; cursor: pointer; }
+.flash-close:hover { color: #fff; }
+
+/* halaman keranjang, checkout, sukses */
+.page { min-height: 70vh; padding-top: 14rem; }
+.empty-box { text-align: center; padding: 4rem 0; }
+.empty-box i { font-size: 6rem; color: #fff200; }
+.empty-box p { font-size: 1.8rem; color: #aaa; padding: 2rem 0; }
+
+.cart-list { display: grid; gap: 1.5rem; }
+.cart-item {
+  display: grid; grid-template-columns: 9rem 1fr auto auto auto; gap: 2rem; align-items: center;
+  background: rgba(0,0,0,.45); border: .2rem solid rgba(255,255,255,.15); padding: 1.5rem 2rem;
+}
+.cart-item img { width: 9rem; height: 9rem; object-fit: contain; }
+.cart-item h3 { font-size: 1.9rem; color: #fff; text-transform: uppercase; }
+.cart-item .info p { font-size: 1.4rem; color: #aaa; }
+.cart-item .qty { display: flex; flex-direction: column; gap: .5rem; font-size: 1.2rem; color: #aaa; }
+.cart-item .qty input {
+  width: 8rem; padding: .8rem 1rem; font-size: 1.6rem; color: #fff; background: #000;
+  border: .2rem solid rgba(255,255,255,.3); text-transform: none;
+}
+.cart-item .subtotal { font-size: 1.8rem; color: #fff200; min-width: 12rem; text-align: right; }
+.cart-item .remove { background: none; color: #aaa; font-size: 2rem; cursor: pointer; padding: 1rem; }
+.cart-item .remove:hover { color: #ff6b6b; }
+
+.cart-summary {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;
+  margin-top: 2.5rem; padding-top: 2rem; border-top: .2rem solid rgba(255,255,255,.15);
+}
+.cart-summary .total { font-size: 2.2rem; color: #fff; }
+.cart-summary .total strong { color: #fff200; }
+
+.checkout-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: start; }
+.checkout-form, .order-summary { background: rgba(0,0,0,.45); border: .2rem solid rgba(255,255,255,.15); padding: 2.5rem; }
+.checkout-form h4, .order-summary h4 { font-size: 2rem; color: #fff; text-transform: uppercase; margin-bottom: 1.5rem; }
+.checkout-form label { display: block; font-size: 1.4rem; color: #aaa; margin: 1.5rem 0 .5rem; }
+.checkout-form .box, .contact .row .form form .box {
+  width: 100%; padding: 1.2rem 1.4rem; font-size: 1.6rem; color: #fff; background: none;
+  border: .2rem solid rgba(255,255,255,.3); text-transform: none;
+}
+.checkout-form .box:focus { border-color: #fff200; }
+.checkout-form textarea { resize: vertical; }
+.checkout-form .btn { margin-top: 2rem; }
+.hint { font-size: 1.4rem; color: #aaa; margin-top: 1.5rem; line-height: 1.7; }
+
+.order-summary .line { display: flex; justify-content: space-between; gap: 1.5rem; font-size: 1.6rem; color: #ddd; padding: 1rem 0; border-bottom: .1rem solid rgba(255,255,255,.1); }
+.order-summary .line.total { font-size: 2rem; color: #fff200; border-bottom: 0; }
+.order-summary .edit-link { display: inline-block; font-size: 1.4rem; color: #aaa; margin-top: 1rem; }
+.order-summary .edit-link:hover { color: #fff200; }
+
+.success-card { max-width: 60rem; margin: 0 auto; text-align: center; background: rgba(0,0,0,.5); border: .2rem solid rgba(255,255,255,.15); padding: 4rem 3rem; }
+.success-card .big { font-size: 7rem; color: #7ee07e; }
+.success-card h3 { font-size: 3rem; color: #fff; text-transform: uppercase; margin: 1.5rem 0; }
+.success-card > p { font-size: 1.6rem; color: #aaa; }
+.order-code { font: 700 3rem/1.4 monospace; color: #fff200; letter-spacing: .2rem; margin: 1rem 0 1.5rem; text-transform: none; }
+.success-card .order-summary { text-align: left; margin: 2rem 0; }
+.success-card .btn { margin: 1rem .5rem 0; }
+.status { display: inline-block; padding: .3rem 1rem; font-size: 1.3rem; border-radius: 2rem; background: #333; color: #fff; }
+.status-baru { background: #fff200; color: #000; }
+
+@media (max-width: 768px) {
+  .checkout-grid { grid-template-columns: 1fr; }
+  .cart-item { grid-template-columns: 7rem 1fr auto; }
+  .cart-item img { width: 7rem; height: 7rem; }
+  .cart-item .qty { grid-column: 2; }
+  .cart-item .subtotal { grid-column: 3; grid-row: 1; }
+  .cart-item .remove { grid-column: 3; grid-row: 2; }
+  .cart-summary { justify-content: center; text-align: center; }
+  .page { padding-top: 12rem; }
+}

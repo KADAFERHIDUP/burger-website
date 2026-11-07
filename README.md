@@ -1,27 +1,15 @@
-# Burger Website
+# Burger: Website Toko Burger
 
-Website menu burger satu halaman dengan pemesanan lewat WhatsApp. Dibuat oleh **Ahmad Umraithi**.
+Project website toko burger oleh **Ahmad Umraithi**, dibagi menjadi dua bagian:
 
-## Fitur
-- Menu burger dengan tombol **Pesan Sekarang** yang langsung membuka WhatsApp berisi nama menu dan harga
-- Pencarian menu dari ikon kaca pembesar di header
-- Form kontak yang dikirim sebagai pesan WhatsApp
-- Responsif untuk HP, tablet, dan desktop
-- Animasi scroll dengan [AOS](https://michalsnik.github.io/aos/)
+| Folder | Isi | Teknologi | Cara pakai |
+|---|---|---|---|
+| [`frontend/`](frontend/) | Website statis, pemesanan langsung lewat WhatsApp | HTML, CSS (SCSS), JavaScript, AOS | Online di GitHub Pages: https://kadaferhidup.github.io/burger-website/ |
+| [`backend/`](backend/) | Toko online lengkap: keranjang, checkout, database pesanan, panel admin | CodeIgniter 4, PHP 8.1+, MySQL | Dijalankan lokal dengan XAMPP/Laragon, lihat [`backend/README.md`](backend/README.md) |
 
-## Teknologi
-HTML, CSS (sumber SCSS di `css/style.scss`), JavaScript, Font Awesome 5, AOS.
-
-## Jalankan
-Buka `index.html` langsung di browser, atau pakai server lokal:
-```
-npx serve .
-```
-
-## Ubah data
-- Nomor WhatsApp tujuan pesanan: konstanta `WHATSAPP_NUMBER` di `js/script.js`
-- Menu, harga, alamat, email, dan telepon: `index.html`
+`index.html` di folder utama hanya mengarahkan GitHub Pages ke `frontend/`.
 
 ## Kontak
 - Email: umraithi769@gmail.com
 - WhatsApp: 0822-7607-8880
+- LinkedIn: https://www.linkedin.com/in/ahmadumraithi/
