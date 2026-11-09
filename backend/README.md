@@ -2,7 +2,7 @@
 
 Website toko burger dengan keranjang belanja, checkout, dan panel admin. Dibuat oleh **Ahmad Umraithi** untuk portofolio, menggunakan **CodeIgniter 4**, **PHP 8.1+**, dan **MySQL**.
 
-Folder ini adalah bagian **backend** dari repo [burger-website](../). Versi statis (frontend) online di GitHub Pages: https://kadaferhidup.github.io/burger-website/
+Folder ini adalah bagian **backend** dari repo [burger-website](../). Versi statis (frontend) online di GitHub Pages: https://burger.kadaferhidup.my.id
 
 ## Fitur
 

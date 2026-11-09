@@ -1,6 +1,6 @@
 # Burger Website (Frontend)
 
-Bagian **frontend** dari repo [burger-website](../): versi statis yang online di https://kadaferhidup.github.io/burger-website/. Versi dengan database dan panel admin ada di [`backend/`](../backend/).
+Bagian **frontend** dari repo [burger-website](../): versi statis yang online di https://burger.kadaferhidup.my.id. Versi dengan database dan panel admin ada di [`backend/`](../backend/).
 
 Website menu burger satu halaman dengan pemesanan lewat WhatsApp. Dibuat oleh **Ahmad Umraithi**.
 
