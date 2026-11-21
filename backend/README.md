@@ -64,9 +64,17 @@ Yang dibutuhkan: **XAMPP atau Laragon** (PHP 8.1+ dan MySQL) dan **Composer**.
 
 ### Login admin awal
 - Email: `umraithi769@gmail.com`
-- Password: `burger123`
+- Password: isi sendiri di `ADMIN_PASSWORD` pada file `.env` **sebelum** seeding (minimal 10 karakter, berisi huruf dan angka). Kalau dikosongkan, password acak dibuat dan ditampilkan sekali di terminal saat seeding.
 
-Ganti password ini sebelum dipakai serius: ubah `ADMIN_PASSWORD` di `.env` sebelum langkah seeding. Kalau sudah terlanjur di-seed, kosongkan tabel `users`, lalu jalankan `php spark db:seed AdminSeeder` lagi.
+Ganti password kapan saja dengan `php spark admin:password`. Password contoh lama `burger123` ditolak saat login, jadi kalau database kamu dibuat sebelum perubahan ini, jalankan perintah itu dulu.
+
+### Pengamanan
+- Harga dan total pesanan selalu dihitung ulang di server dari database; isi keranjang di browser tidak dipercaya.
+- Semua form memakai token CSRF, dan semua output di-escape untuk mencegah XSS.
+- Login admin dibatasi 5 percobaan per 5 menit per IP, dengan waktu respons yang sama untuk email terdaftar maupun tidak.
+- Checkout dan form kontak dibatasi 5 kiriman per 10 menit per IP.
+- Halaman pesanan (berisi nama, HP, dan alamat) hanya bisa dibuka dari perangkat yang memesan, bukan dari siapa pun yang tahu kodenya.
+- Foto upload dicek isinya, diberi nama acak, dan folder upload menolak menjalankan skrip.
 
 ## Masalah yang sering muncul
 

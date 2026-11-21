@@ -40,7 +40,8 @@ class Cart extends BaseController
 
     public function update()
     {
-        $quantities = (array) $this->request->getPost('qty');
+        // keranjang paling banyak berisi sejumlah kecil menu; sisanya diabaikan supaya session tidak dibanjiri
+        $quantities = array_slice((array) $this->request->getPost('qty'), 0, 50, true);
 
         foreach ($quantities as $menuId => $qty) {
             $this->cart->set((int) $menuId, (int) $qty);

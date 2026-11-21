@@ -18,6 +18,19 @@ if (! function_exists('wa_url')) {
     }
 }
 
+if (! function_exists('rate_limited')) {
+    /**
+     * true kalau alamat IP ini sudah melewati batas untuk aksi tertentu (token bucket bawaan CodeIgniter).
+     * Dipakai untuk login admin, checkout, dan form kontak supaya tidak bisa ditebak atau dibanjiri.
+     */
+    function rate_limited(string $action, int $limit, int $seconds): bool
+    {
+        $ip = service('request')->getIPAddress();
+
+        return service('throttler')->check(md5($action . '|' . $ip), $limit, $seconds) === false;
+    }
+}
+
 if (! function_exists('order_statuses')) {
     /** Daftar status pesanan beserta labelnya. */
     function order_statuses(): array

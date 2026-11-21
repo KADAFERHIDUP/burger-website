@@ -18,6 +18,7 @@
 
 # Foto menu yang diupload lewat panel admin
 /public/images/menu/*
+!/public/images/menu/.htaccess
 !/public/images/menu/.gitkeep
 
 .DS_Store
