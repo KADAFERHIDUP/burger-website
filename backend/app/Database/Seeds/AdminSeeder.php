@@ -2,7 +2,9 @@
 
 namespace App\Database\Seeds;
 
+use CodeIgniter\CLI\CLI;
 use CodeIgniter\Database\Seeder;
+use RuntimeException;
 
 class AdminSeeder extends Seeder
 {
@@ -14,12 +16,22 @@ class AdminSeeder extends Seeder
             return;
         }
 
+        $password = (string) env('ADMIN_PASSWORD', '');
+
+        if ($password === '') {
+            // Tidak ada password bawaan: kalau ADMIN_PASSWORD kosong, buat yang acak dan tampilkan sekali saja.
+            $password = bin2hex(random_bytes(8));
+            CLI::write("Password admin dibuat otomatis: {$password}", 'yellow');
+            CLI::write('Simpan sekarang. Password ini tidak ditampilkan lagi.', 'yellow');
+        } elseif (strlen($password) < 10 || ! preg_match('/[A-Za-z]/', $password) || ! preg_match('/\d/', $password)) {
+            throw new RuntimeException('ADMIN_PASSWORD terlalu lemah: minimal 10 karakter, berisi huruf dan angka.');
+        }
+
         $now = date('Y-m-d H:i:s');
         $this->db->table('users')->insert([
             'name'          => 'Ahmad Umraithi',
             'email'         => $email,
-            // Password awal. Ganti lewat ADMIN_PASSWORD di file .env sebelum seeding.
-            'password_hash' => password_hash(env('ADMIN_PASSWORD', 'burger123'), PASSWORD_DEFAULT),
+            'password_hash' => password_hash($password, PASSWORD_DEFAULT),
             'created_at'    => $now,
             'updated_at'    => $now,
         ]);

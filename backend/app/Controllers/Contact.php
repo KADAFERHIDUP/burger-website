@@ -8,6 +8,10 @@ class Contact extends BaseController
 {
     public function send()
     {
+        if (rate_limited('contact', 5, 600)) {
+            return redirect()->to(base_url('#contact'))->withInput()->with('error', 'Terlalu banyak pesan dari perangkat ini. Coba lagi beberapa menit lagi.');
+        }
+
         $rules = [
             'name'    => ['label' => 'Nama', 'rules' => 'required|max_length[100]'],
             'email'   => ['label' => 'Email', 'rules' => 'permit_empty|valid_email|max_length[150]'],

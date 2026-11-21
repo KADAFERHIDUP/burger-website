@@ -17,6 +17,10 @@ class Auth extends BaseController
 
     public function attempt()
     {
+        if (rate_limited('admin-login', 5, 300)) {
+            return redirect()->back()->with('error', 'Terlalu banyak percobaan login. Coba lagi 5 menit lagi.');
+        }
+
         $rules = [
             'email'    => 'required|valid_email',
             'password' => 'required',
@@ -28,7 +32,11 @@ class Auth extends BaseController
 
         $user = (new UserModel())->where('email', $this->request->getPost('email'))->first();
 
-        if ($user === null || ! password_verify((string) $this->request->getPost('password'), $user['password_hash'])) {
+        // hash pembanding supaya waktu respons sama, baik email terdaftar maupun tidak
+        $hash = $user['password_hash'] ?? '$2y$10$a6sQJNSyYI8jFJzf9.UoT.A0tq3XpwqJXY9SttdpDMe7fz10ss9rm';
+        $ok   = password_verify((string) $this->request->getPost('password'), $hash) && $user !== null;
+
+        if (! $ok) {
             return redirect()->back()->withInput()->with('error', 'Email atau password salah.');
         }
 
@@ -41,6 +49,7 @@ class Auth extends BaseController
     public function logout()
     {
         session()->remove('admin');
+        session()->regenerate(true);
 
         return redirect()->to(site_url('admin/login'))->with('success', 'Kamu sudah logout.');
     }

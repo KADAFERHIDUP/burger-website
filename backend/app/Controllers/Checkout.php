@@ -31,6 +31,10 @@ class Checkout extends BaseController
             return redirect()->to(base_url('#menu'))->with('error', 'Keranjang masih kosong.');
         }
 
+        if (rate_limited('checkout', 5, 600)) {
+            return redirect()->back()->withInput()->with('error', 'Terlalu banyak pesanan dari perangkat ini. Coba lagi beberapa menit lagi.');
+        }
+
         $rules = [
             'customer_name' => ['label' => 'Nama', 'rules' => 'required|max_length[100]'],
             'phone'         => ['label' => 'Nomor HP', 'rules' => 'required|regex_match[/^[0-9+\-\s]{8,20}$/]'],
@@ -78,11 +82,21 @@ class Checkout extends BaseController
 
         $cartLib->clear();
 
+        // hanya perangkat yang memesan yang boleh membuka halaman pesanannya (nama, HP, dan alamat ada di sana)
+        $mine   = (array) (session('my_orders') ?? []);
+        $mine[] = $code;
+        session()->set('my_orders', array_slice($mine, -20));
+
         return redirect()->to(site_url('pesanan/' . $code));
     }
 
     public function success(string $code)
     {
+        // Kode pesanan pendek dan bisa ditebak, jadi tidak boleh jadi satu-satunya kunci untuk melihat data pembeli.
+        if (! in_array($code, (array) (session('my_orders') ?? []), true)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Pesanan tidak ditemukan.');
+        }
+
         $order = (new OrderModel())->where('code', $code)->first();
 
         if ($order === null) {
