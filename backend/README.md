@@ -66,7 +66,7 @@ Yang dibutuhkan: **XAMPP atau Laragon** (PHP 8.1+ dan MySQL) dan **Composer**.
 - Email: `umraithi769@gmail.com`
 - Password: isi sendiri di `ADMIN_PASSWORD` pada file `.env` **sebelum** seeding (minimal 10 karakter, berisi huruf dan angka). Kalau dikosongkan, password acak dibuat dan ditampilkan sekali di terminal saat seeding.
 
-Kalau lupa password, kosongkan tabel `users`, isi `ADMIN_PASSWORD`, lalu jalankan `php spark db:seed AdminSeeder` lagi.
+Ganti password kapan saja dengan `php spark admin:password`. Password contoh lama `burger123` ditolak saat login, jadi kalau database kamu dibuat sebelum perubahan ini, jalankan perintah itu dulu.
 
 ### Pengamanan
 - Harga dan total pesanan selalu dihitung ulang di server dari database; isi keranjang di browser tidak dipercaya.
