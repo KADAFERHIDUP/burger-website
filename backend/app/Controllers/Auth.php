@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Database\Seeds\AdminSeeder;
 use App\Models\UserModel;
 
 class Auth extends BaseController
@@ -38,6 +39,10 @@ class Auth extends BaseController
 
         if (! $ok) {
             return redirect()->back()->withInput()->with('error', 'Email atau password salah.');
+        }
+
+        if (in_array(strtolower((string) $this->request->getPost('password')), AdminSeeder::KNOWN, true)) {
+            return redirect()->back()->withInput()->with('error', 'Password ini pernah tertulis di contoh publik, jadi tidak bisa dipakai lagi. Ganti dulu lewat terminal: php spark admin:password');
         }
 
         session()->regenerate();
